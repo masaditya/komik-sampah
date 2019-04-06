@@ -20,9 +20,8 @@ public class DbComic extends SQLiteOpenHelper {
 
     public void insertData(String title, String desc, byte[] cover){
         SQLiteDatabase database = getWritableDatabase();
-        String sql = "INSERT INTO comic VALUES (NULL, ?, ?, ?)";
+        String sql = "INSERT INTO Comic VALUES (NULL, ?, ?, ?)";
 //        String sql = "CREATE TABLE IF NOT EXISTS Comic(idComic integer PRIMARY KEY AUTOINCREMENT, title text, description text, cover blob)";
-
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
 

@@ -1,6 +1,8 @@
 package com.adityaeka.sampahisasi.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,10 +62,20 @@ public class ComicListAdapter extends BaseAdapter {
             holder.tvDesc = row.findViewById(R.id.tv_itemDesc);
             holder.ivCover = row.findViewById(R.id.iv_itemCover);
             row.setTag(holder);
+        }else{
+            holder = (ViewHolder) row.getTag();
         }
 
+        Comic comic = comicArrayList.get(position);
+        holder.tvTitle.setText(comic.getTitle());
+        holder.tvDesc.setText(comic.getDescription());
+
+        byte[] cover = comic.getCover();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.length);
+        holder.ivCover.setImageBitmap(bitmap);
 
 
-        return null;
+
+        return row;
     }
 }
