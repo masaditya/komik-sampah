@@ -1,13 +1,21 @@
 package com.adityaeka.sampahisasi;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.adityaeka.sampahisasi.adapter.ComicListAdapter;
@@ -48,7 +56,7 @@ public class ListComicActivity extends AppCompatActivity {
 
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 CharSequence[] items = {"Update", "Delete"};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ListComicActivity.this);
                 dialog.setTitle("Chooose an action");
@@ -58,9 +66,18 @@ public class ListComicActivity extends AppCompatActivity {
                         if (which==0){
 //                            update func
 
+                                Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                                ArrayList<Integer> arrId = new ArrayList<Integer>();
+                                while (c.moveToNext()){
+                                    arrId.add(c.getInt(0));
+                                }
 
+                            int id = arrId.get(position);
+                            Intent i = new Intent(ListComicActivity.this, AddComicActivity.class);
+                            i.putExtra("updateId", id);
+                            startActivity(i);
 
-                            Toast.makeText(getApplicationContext(), "Update", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Update id "+id, Toast.LENGTH_SHORT).show();
 
                         }else {
 //                            delete func
@@ -76,4 +93,25 @@ public class ListComicActivity extends AppCompatActivity {
 
 
     }
+
+    private void showDialogUpdate(Activity activity){
+        Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.dialog_update_comic);
+
+        dialog.setTitle("Update Comic");
+        ImageView ivUpdateCover = dialog.findViewById(R.id.iv_update_cover);
+        EditText etUpdateTitle = dialog.findViewById(R.id.et_update_title);
+        EditText etUpdateDesc = dialog.findViewById(R.id.et_desc);
+//        Button btnUpdate = dialog.findViewById(R.id.btn_update);
+
+        int width = (int) (activity.getResources().getDisplayMetrics().widthPixels * 0.9);
+        int height = (int) (activity.getResources().getDisplayMetrics().heightPixels * 0.7);
+
+        dialog.getWindow().setLayout(width, height);
+        dialog.show();
+
+//        ivUpdateCover.setOnClickListener(this);
+
+    }
+
 }

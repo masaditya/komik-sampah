@@ -44,7 +44,7 @@ public class DbComic extends SQLiteOpenHelper {
 //    UPDATE
     public void updateData(String title, String desc, byte[] cover, int id){
         SQLiteDatabase database = getWritableDatabase();
-        String sql = "UPDATE Comic SET title = ?, description = ?, cover = ? WHERE id = ?";
+        String sql = "UPDATE Comic SET title = ?, description = ?, cover = ? WHERE idComic = ?";
         SQLiteStatement statement =  database.compileStatement(sql);
         statement.bindString(1, title);
         statement.bindString(2, desc);

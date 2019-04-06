@@ -40,7 +40,6 @@ public class AddComicActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_comic);
 
-
         etTitle = findViewById(R.id.et_title);
         etDesc = findViewById(R.id.et_desc);
         btnChoose = findViewById(R.id.btn_addCover);
@@ -52,9 +51,45 @@ public class AddComicActivity extends AppCompatActivity implements View.OnClickL
 
         dbComic.queryData("CREATE TABLE IF NOT EXISTS Comic(idComic integer PRIMARY KEY AUTOINCREMENT, title text, description text, cover blob)");
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            final int isNew = extras.getInt("updateId", 0);
+            btnAddComic.setText("UPDATE COMIC");
+            btnAddComic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try{
+                        dbComic.updateData(
+                                etTitle.getText().toString().trim(),
+                                etDesc.getText().toString().trim(),
+                                imageViewToByte(ivCover),
+                                isNew
+                        );
+                        Toast.makeText(getApplicationContext(), "Update New Comic id "+isNew, Toast.LENGTH_SHORT).show();
+                        btnShowList.setText("CHECK UPDATE");
+                        etTitle.setText("");
+                        etDesc.setText("");
+                        ivCover.setImageResource(R.mipmap.ic_launcher_round);
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Gagal bro "+isNew, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+        }else {
+            btnAddComic.setOnClickListener(this);
+        }
+
+
         btnChoose.setOnClickListener(this);
-        btnAddComic.setOnClickListener(this);
+
         btnShowList.setOnClickListener(this);
+
+
+
     }
 
     @Override
@@ -86,7 +121,7 @@ public class AddComicActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_showListComic:
                 Intent intent = new Intent(AddComicActivity.this, ListComicActivity.class);
                 startActivity(intent);
-
+                break;
         }
     }
 
