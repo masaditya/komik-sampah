@@ -18,10 +18,11 @@ public class DbComic extends SQLiteOpenHelper {
         database.execSQL(sql);
     }
 
+//    CREATE
+
     public void insertData(String title, String desc, byte[] cover){
         SQLiteDatabase database = getWritableDatabase();
         String sql = "INSERT INTO Comic VALUES (NULL, ?, ?, ?)";
-//        String sql = "CREATE TABLE IF NOT EXISTS Comic(idComic integer PRIMARY KEY AUTOINCREMENT, title text, description text, cover blob)";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
 
@@ -32,9 +33,26 @@ public class DbComic extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
+//   READ
+
     public Cursor getData(String sql){
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(sql, null);
+    }
+
+
+//    UPDATE
+    public void updateData(String title, String desc, byte[] cover, int id){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "UPDATE Comic SET title = ?, description = ?, cover = ? WHERE id = ?";
+        SQLiteStatement statement =  database.compileStatement(sql);
+        statement.bindString(1, title);
+        statement.bindString(2, desc);
+        statement.bindBlob(3, cover);
+        statement.bindDouble(4, id);
+
+        statement.execute();
+        database.close();
     }
 
     @Override

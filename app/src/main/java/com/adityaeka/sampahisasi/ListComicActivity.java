@@ -39,10 +39,10 @@ public class ListComicActivity extends AppCompatActivity {
             int id = cursor.getInt(0);
             String title = cursor.getString(1);
             String desc = cursor.getString(2);
-            byte[] image = cursor.getBlob(3);
+            byte[] cover = cursor.getBlob(3);
 
 
-            comics.add(new Comic(id, title, desc, image));
+            comics.add(new Comic(id, title, desc, cover));
         }
         adapter.notifyDataSetChanged();
 
