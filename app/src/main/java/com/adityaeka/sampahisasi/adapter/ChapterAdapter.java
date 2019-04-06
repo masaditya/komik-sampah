@@ -5,7 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.adityaeka.sampahisasi.models.Chapter;
+
+import java.util.ArrayList;
+
 public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ViewHolder> {
+
+    ArrayList<Chapter> chapters;
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
