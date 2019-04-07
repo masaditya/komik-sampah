@@ -138,14 +138,6 @@ public class ListComicActivity extends AppCompatActivity {
 //                adapter.notifyDataSetChanged();
 
                 int idReadComic = arrId.get(position);
-                Bundle bundle = new Bundle();
-                bundle.putInt("idRead", idReadComic);
-// set Fragmentclass Arguments
-                ReadComicFragment readComicFragment = new ReadComicFragment();
-                readComicFragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fc_read_comic, readComicFragment)
-                        .commit();
             }
         });
 

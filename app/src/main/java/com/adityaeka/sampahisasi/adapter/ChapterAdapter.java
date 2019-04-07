@@ -32,8 +32,8 @@ public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Chapter chapter = chapters.get(i);
 
+        Chapter chapter = chapters.get(i);
         byte[] chapt = chapter.getChapter();
         Bitmap bitmap = BitmapFactory.decodeByteArray(chapt, 0, chapt.length);
         viewHolder.chapterImage.setImageBitmap(bitmap);
