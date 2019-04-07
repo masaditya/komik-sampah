@@ -43,7 +43,7 @@ public class AddChapterActivity extends AppCompatActivity implements View.OnClic
 
         dbComic.queryData("CREATE TABLE IF NOT EXISTS Chapter(idChapter integer PRIMARY KEY AUTOINCREMENT, chapter blob, idComic integer, FOREIGN KEY (idComic) REFERENCES Comic(idComic))");
 
-        comicId = getIntent().getIntExtra("IdComic", 0);
+        comicId = getIntent().getIntExtra("idComic", 0);
 
         btnAddChapter.setOnClickListener(this);
         btnChooseChapter.setOnClickListener(this);

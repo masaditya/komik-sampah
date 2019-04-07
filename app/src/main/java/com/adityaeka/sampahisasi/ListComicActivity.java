@@ -18,7 +18,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.adityaeka.sampahisasi.adapter.ChapterAdapter;
 import com.adityaeka.sampahisasi.adapter.ComicListAdapter;
+import com.adityaeka.sampahisasi.models.Chapter;
 import com.adityaeka.sampahisasi.models.Comic;
 
 import java.util.ArrayList;
@@ -29,6 +31,11 @@ public class ListComicActivity extends AppCompatActivity {
     ArrayList<Comic> comics;
     ComicListAdapter adapter = null;
 
+
+    ChapterAdapter chapterAdapter = null;
+    ArrayList<Chapter> chapters;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,9 @@ public class ListComicActivity extends AppCompatActivity {
         comics = new ArrayList<>();
         adapter = new ComicListAdapter(this, R.layout.comic_items, comics);
         gridView.setAdapter(adapter);
+
+
+
 
 
 //        get all data
@@ -94,7 +104,7 @@ public class ListComicActivity extends AppCompatActivity {
                             Intent intentAddChapter = new Intent(ListComicActivity.this, AddChapterActivity.class);
                             intentAddChapter.putExtra("idComic", id);
                             startActivity(intentAddChapter);
-                            Toast.makeText(getApplicationContext(), "Add Chapter comic id ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Add Chapter comic id "+id, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -104,6 +114,40 @@ public class ListComicActivity extends AppCompatActivity {
 
         });
 
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                ArrayList<Integer> arrId = new ArrayList<Integer>();
+                while (c.moveToNext()){
+                    arrId.add(c.getInt(0));
+                }
+
+                Cursor cursor = AddComicActivity.dbComic.getData("SELECT * FROM Chapter WHERE idComic");
+                chapters.clear();
+                while (cursor.moveToNext()){
+                    int idChapter = cursor.getInt(0);
+                    byte[] chapImage = cursor.getBlob(1);
+                    int idComic = cursor.getInt(2);
+
+
+
+                    chapters.add(new Chapter(idChapter, chapImage, idComic));
+                }
+//                adapter.notifyDataSetChanged();
+
+                int idReadComic = arrId.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putInt("idRead", idReadComic);
+// set Fragmentclass Arguments
+                ReadComicFragment readComicFragment = new ReadComicFragment();
+                readComicFragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fc_read_comic, readComicFragment)
+                        .commit();
+            }
+        });
 
     }
 
