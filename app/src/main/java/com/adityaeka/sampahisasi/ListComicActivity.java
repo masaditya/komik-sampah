@@ -32,8 +32,6 @@ public class ListComicActivity extends AppCompatActivity {
     ComicListAdapter adapter = null;
 
 
-    ChapterAdapter chapterAdapter = null;
-    ArrayList<Chapter> chapters;
 
 
     @Override
@@ -124,43 +122,34 @@ public class ListComicActivity extends AppCompatActivity {
                     arrId.add(c.getInt(0));
                 }
 
-                Cursor cursor = AddComicActivity.dbComic.getData("SELECT * FROM Chapter WHERE idComic");
-                chapters.clear();
-                while (cursor.moveToNext()){
-                    int idChapter = cursor.getInt(0);
-                    byte[] chapImage = cursor.getBlob(1);
-                    int idComic = cursor.getInt(2);
-
-
-
-                    chapters.add(new Chapter(idChapter, chapImage, idComic));
-                }
-//                adapter.notifyDataSetChanged();
-
                 int idReadComic = arrId.get(position);
+                Intent intentRead = new Intent(ListComicActivity.this, ReadComicActivity.class);
+                intentRead.putExtra("idReadComic", idReadComic);
+                startActivity(intentRead);
+
             }
         });
 
     }
 
-    private void showDialogUpdate(Activity activity){
-        Dialog dialog = new Dialog(activity);
-        dialog.setContentView(R.layout.dialog_update_comic);
-
-        dialog.setTitle("Update Comic");
-        ImageView ivUpdateCover = dialog.findViewById(R.id.iv_update_cover);
-        EditText etUpdateTitle = dialog.findViewById(R.id.et_update_title);
-        EditText etUpdateDesc = dialog.findViewById(R.id.et_desc);
-//        Button btnUpdate = dialog.findViewById(R.id.btn_update);
-
-        int width = (int) (activity.getResources().getDisplayMetrics().widthPixels * 0.9);
-        int height = (int) (activity.getResources().getDisplayMetrics().heightPixels * 0.7);
-
-        dialog.getWindow().setLayout(width, height);
-        dialog.show();
-
-//        ivUpdateCover.setOnClickListener(this);
-
-    }
+//    private void showDialogUpdate(Activity activity){
+//        Dialog dialog = new Dialog(activity);
+//        dialog.setContentView(R.layout.dialog_update_comic);
+//
+//        dialog.setTitle("Update Comic");
+//        ImageView ivUpdateCover = dialog.findViewById(R.id.iv_update_cover);
+//        EditText etUpdateTitle = dialog.findViewById(R.id.et_update_title);
+//        EditText etUpdateDesc = dialog.findViewById(R.id.et_desc);
+////        Button btnUpdate = dialog.findViewById(R.id.btn_update);
+//
+//        int width = (int) (activity.getResources().getDisplayMetrics().widthPixels * 0.9);
+//        int height = (int) (activity.getResources().getDisplayMetrics().heightPixels * 0.7);
+//
+//        dialog.getWindow().setLayout(width, height);
+//        dialog.show();
+//
+////        ivUpdateCover.setOnClickListener(this);
+//
+//    }
 
 }

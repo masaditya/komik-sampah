@@ -1,5 +1,6 @@
 package com.adityaeka.sampahisasi.adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -17,15 +18,17 @@ import java.util.ArrayList;
 public class ChapterAdapter extends RecyclerView.Adapter<ChapterAdapter.ViewHolder> {
 
     ArrayList<Chapter> chapters;
+    Context context;
 
-    public ChapterAdapter(ArrayList<Chapter> chapters) {
+    public ChapterAdapter(ArrayList<Chapter> chapters, Context context) {
         this.chapters = chapters;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.chapter_items, viewGroup, false);
         return new ViewHolder(view);
     }
