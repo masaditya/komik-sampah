@@ -63,4 +63,19 @@ public class DbComic extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+//    CREATE CHAPTER
+
+    public void insertChapter(byte[] chapter, int idComic){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "INSERT INTO Chapter VALUES (NULL, ?, ?)";
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+        statement.bindBlob(1, chapter);
+        statement.bindDouble(2, idComic);
+
+        statement.executeInsert();
+    }
+
 }

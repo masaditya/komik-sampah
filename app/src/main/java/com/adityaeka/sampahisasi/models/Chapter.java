@@ -6,10 +6,10 @@ public class Chapter {
     private int idChapter, idComic;
     private byte[] chapter;
 
-    public Chapter(int idChapter, int idComic, byte[] chapter) {
+    public Chapter(int idChapter, byte[] chapter, int idComic ) {
         this.idChapter = idChapter;
-        this.idComic = idComic;
         this.chapter = chapter;
+        this.idComic = idComic;
     }
 
     public int getIdChapter() {

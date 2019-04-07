@@ -57,7 +57,7 @@ public class ListComicActivity extends AppCompatActivity {
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                CharSequence[] items = {"Update", "Delete"};
+                CharSequence[] items = {"Update", "Delete", "Add Chapter"};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ListComicActivity.this);
                 dialog.setTitle("Chooose an action");
                 dialog.setItems(items, new DialogInterface.OnClickListener() {
@@ -79,9 +79,22 @@ public class ListComicActivity extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), "Update id "+id, Toast.LENGTH_SHORT).show();
 
-                        }else {
+                        }else if(which == 1){
 //                            delete func
                             Toast.makeText(getApplicationContext(), "Delete", Toast.LENGTH_SHORT).show();
+                        }else {
+
+                            Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                            ArrayList<Integer> arrIdComic = new ArrayList<Integer>();
+                            while (c.moveToNext()){
+                                arrIdComic.add(c.getInt(0));
+                            }
+//
+                            int id = arrIdComic.get(position);
+                            Intent intentAddChapter = new Intent(ListComicActivity.this, AddChapterActivity.class);
+                            intentAddChapter.putExtra("idComic", id);
+                            startActivity(intentAddChapter);
+                            Toast.makeText(getApplicationContext(), "Add Chapter comic id ", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
