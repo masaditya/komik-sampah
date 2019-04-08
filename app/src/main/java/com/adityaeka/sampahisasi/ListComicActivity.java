@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.adityaeka.sampahisasi.adapter.ChapterAdapter;
 import com.adityaeka.sampahisasi.adapter.ComicListAdapter;
+import com.adityaeka.sampahisasi.db.DbComic;
 import com.adityaeka.sampahisasi.models.Chapter;
 import com.adityaeka.sampahisasi.models.Comic;
 
@@ -36,7 +37,7 @@ public class ListComicActivity extends AppCompatActivity {
     ArrayList<Comic> comics;
     ComicListAdapter adapter = null;
 
-
+    DbComic dbComic;
 
 
     @Override
@@ -49,10 +50,10 @@ public class ListComicActivity extends AppCompatActivity {
         adapter = new ComicListAdapter(this, R.layout.comic_items, comics);
         gridView.setAdapter(adapter);
 
-
+        dbComic = new DbComic(this, "Comic.db", null, 1);
 
 //        get all data
-        Cursor cursor = AddComicActivity.dbComic.getData("SELECT * FROM Comic");
+        Cursor cursor = dbComic.getData("SELECT * FROM Comic");
         comics.clear();
         while (cursor.moveToNext()){
             int id = cursor.getInt(0);
@@ -77,7 +78,7 @@ public class ListComicActivity extends AppCompatActivity {
                         if (which==0){
 //                            update func
 
-                                Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                                Cursor c = dbComic.getData("SELECT idComic FROM Comic");
                                 ArrayList<Integer> arrId = new ArrayList<Integer>();
                                 while (c.moveToNext()){
                                     arrId.add(c.getInt(0));
@@ -92,19 +93,19 @@ public class ListComicActivity extends AppCompatActivity {
 
                         }else if(which == 1){
 //                            delete func
-                            Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                            Cursor c = dbComic.getData("SELECT idComic FROM Comic");
                             ArrayList<Integer> arrIdComic = new ArrayList<Integer>();
                             while (c.moveToNext()){
                                 arrIdComic.add(c.getInt(0));
                             }
                             int idDelete = arrIdComic.get(position);
                             String sql = "DELETE FROM Comic WHERE idComic = "+idDelete;
-                            AddComicActivity.dbComic.deleteData(sql);
+                            dbComic.deleteData(sql);
                             adapter.notifyDataSetChanged();
                             Toast.makeText(getApplicationContext(), "Delete "+idDelete, Toast.LENGTH_SHORT).show();
                         }else {
 
-                            Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                            Cursor c = dbComic.getData("SELECT idComic FROM Comic");
                             ArrayList<Integer> arrIdComic = new ArrayList<Integer>();
                             while (c.moveToNext()){
                                 arrIdComic.add(c.getInt(0));
@@ -128,7 +129,7 @@ public class ListComicActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                Cursor c = dbComic.getData("SELECT idComic FROM Comic");
                 ArrayList<Integer> arrId = new ArrayList<Integer>();
                 while (c.moveToNext()){
                     arrId.add(c.getInt(0));

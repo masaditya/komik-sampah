@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.adityaeka.sampahisasi.db.DbComic;
 import com.adityaeka.sampahisasi.models.User;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, LoginFragment.OnLoginFragmentListener
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, LoginFragment.OnLoginFragmentListener, HomeFragment.OnHomeFragmentListener
 {
 
     Button btnMove;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fragment fragment = null;
         if (session.isLogin()) {
             fragment = new HomeFragment();
+            ((HomeFragment) fragment).setListener(this);
         } else {
             fragment = new LoginFragment();
             ((LoginFragment) fragment).setListener(this);
@@ -67,6 +68,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             session.setUser(username);
         }
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
+        addFragment();
+    }
+
+    @Override
+    public void onLogoutClick() {
+        session.doLogout();
         addFragment();
     }
 }

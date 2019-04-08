@@ -40,10 +40,6 @@ public class AddComicActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_comic);
 
-        Intent intent = new Intent(this, ListComicActivity.class);
-        startActivity(intent);
-
-
         etTitle = findViewById(R.id.et_title);
         etDesc = findViewById(R.id.et_desc);
         btnChoose = findViewById(R.id.btn_addCover);
