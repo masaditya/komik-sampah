@@ -43,12 +43,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Intent intent1 = new Intent(this.getContext(), ListComicActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.home_register:
+                listener.toRegister();
+                break;
+
         }
 
     }
 
     public interface OnHomeFragmentListener {
         void onLogoutClick();
+        void toRegister();
     }
 
 
@@ -63,11 +68,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Button logoutButton = view.findViewById(R.id.home_logout);
         Button toList = view.findViewById(R.id.home_show_list);
         Button toAdd = view.findViewById(R.id.home_add_comic);
+        Button toRegister = view.findViewById(R.id.home_register);
 
         logoutButton.setOnClickListener(this);
         toList.setOnClickListener(this);
         toAdd.setOnClickListener(this);
-
+        toRegister.setOnClickListener(this);
 
         return view;
     }

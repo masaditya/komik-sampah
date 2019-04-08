@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.adityaeka.sampahisasi.db.DbComic;
 
@@ -22,6 +23,7 @@ public class LoginFragment extends Fragment {
 
     public interface OnLoginFragmentListener {
         void onLoginClicked(View view, String username, String password);
+        void onRegisterClicked();
     }
 
 
@@ -42,6 +44,13 @@ public class LoginFragment extends Fragment {
         final EditText usernameText = view.findViewById(R.id.text_username);
         final EditText passwordText = view.findViewById(R.id.text_password);
         Button loginButton = view.findViewById(R.id.button_login);
+        TextView register = view.findViewById(R.id.link_signup);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRegisterClicked();
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -87,4 +87,18 @@ public class DbComic extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
+
+//    CREATE USER
+public void addUser(String username, String password){
+    SQLiteDatabase database = getWritableDatabase();
+    String sql = "INSERT INTO User VALUES (NULL, ?, ?)";
+    SQLiteStatement statement = database.compileStatement(sql);
+    statement.clearBindings();
+
+    statement.bindString(1, username);
+    statement.bindString(2, password);
+
+    statement.executeInsert();
+}
+
 }

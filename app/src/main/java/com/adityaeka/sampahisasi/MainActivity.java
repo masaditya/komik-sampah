@@ -7,17 +7,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.adityaeka.sampahisasi.db.DbComic;
 import com.adityaeka.sampahisasi.models.User;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, LoginFragment.OnLoginFragmentListener, HomeFragment.OnHomeFragmentListener
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, LoginFragment.OnLoginFragmentListener, HomeFragment.OnHomeFragmentListener, RegisterFragment.OnRegisterFragmentListener
 {
 
     Button btnMove;
     public Session session;
     public Settings settings;
     DbComic dbComic;
+    public boolean register = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void addFragment() {
         Fragment fragment = null;
         if (session.isLogin()) {
-            fragment = new HomeFragment();
-            ((HomeFragment) fragment).setListener(this);
+            if (this.register) {
+                fragment = new RegisterFragment();
+                ((RegisterFragment) fragment).setListener(this);
+//                this.register=false;
+            }else {
+                fragment = new HomeFragment();
+                ((HomeFragment) fragment).setListener(this);
+            }
+
         } else {
-            fragment = new LoginFragment();
-            ((LoginFragment) fragment).setListener(this);
+            if (this.register) {
+                fragment = new RegisterFragment();
+                ((RegisterFragment) fragment).setListener(this);
+//                this.register=false;
+            } else {
+                fragment = new LoginFragment();
+                ((LoginFragment) fragment).setListener(this);
+            }
         }
 
         getSupportFragmentManager().beginTransaction()
@@ -72,8 +87,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void onRegisterClicked() {
+        this.register = true;
+        addFragment();
+    }
+
+    @Override
     public void onLogoutClick() {
         session.doLogout();
+        addFragment();
+    }
+
+    @Override
+    public void toRegister() {
+        this.register = true;
+        addFragment();
+    }
+
+    @Override
+    public void onRegistClicked(View view, String username, String password) {
+        dbComic.addUser(username, password);
+        Toast.makeText(getApplicationContext(), "Success added new User", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void toLogin() {
+        this.register = false;
         addFragment();
     }
 }
