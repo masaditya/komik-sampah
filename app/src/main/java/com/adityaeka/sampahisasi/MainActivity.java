@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fragment = new HomeFragment();
         } else {
             fragment = new LoginFragment();
+            ((LoginFragment) fragment).setListener(this);
         }
 
         getSupportFragmentManager().beginTransaction()

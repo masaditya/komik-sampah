@@ -3,6 +3,7 @@ package com.adityaeka.sampahisasi;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.adityaeka.sampahisasi.DummyTemp.Data;
 import com.adityaeka.sampahisasi.models.Comic;
 import com.adityaeka.sampahisasi.models.User;
 
@@ -21,18 +22,8 @@ public class Session {
 
     public User doLogin(String username, String password) {
 
-
         User foundUser = null;
-        Cursor cursor = LoginFragment.dbComic.getData("SELECT * FROM User");
-        userArrayList.clear();
-        while (cursor.moveToNext()){
-            int id = cursor.getInt(0);
-            String usernameDB = cursor.getString(1);
-            String passwordDB = cursor.getString(2);
-            userArrayList.add(new User(id, usernameDB, passwordDB));
-        }
-
-        for (User user : userArrayList) {
+        for (User user : Data.getUsers()) {
             if (username.equals(user.getUsername())
                     && password.equals(user.getPassword())) {
                 foundUser = user;

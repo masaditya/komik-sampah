@@ -29,6 +29,9 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public void setListener(OnLoginFragmentListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
