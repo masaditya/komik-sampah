@@ -1,9 +1,11 @@
 package com.adityaeka.sampahisasi;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
 import com.adityaeka.sampahisasi.DummyTemp.Data;
+import com.adityaeka.sampahisasi.db.DbComic;
 import com.adityaeka.sampahisasi.models.Comic;
 import com.adityaeka.sampahisasi.models.User;
 
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 public class Session {
     private Settings settings;
     private String user;
-
     ArrayList<User> userArrayList;
 
     public Session(Settings settings) {
@@ -23,7 +24,19 @@ public class Session {
     public User doLogin(String username, String password) {
 
         User foundUser = null;
-        for (User user : Data.getUsers()) {
+        userArrayList = new ArrayList<>();
+        Cursor cursor = MainActivity.dbComic.getData("SELECT * FROM User");
+        userArrayList.clear();
+        while (cursor.moveToNext()){
+            int iduser = cursor.getInt(0);
+            String uname = cursor.getString(1);
+            String pw = cursor.getString(2);
+
+            userArrayList.add(new User(iduser, uname, pw));
+        }
+
+
+        for (User user : userArrayList) {
             if (username.equals(user.getUsername())
                     && password.equals(user.getPassword())) {
                 foundUser = user;

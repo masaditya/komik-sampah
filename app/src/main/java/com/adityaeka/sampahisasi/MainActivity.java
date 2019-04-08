@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnMove;
     public Session session;
     public Settings settings;
-    DbComic dbComic;
+    public static DbComic dbComic;
     public boolean register = false;
 
     @Override
