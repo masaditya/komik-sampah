@@ -1,15 +1,20 @@
 package com.adityaeka.sampahisasi;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -46,8 +51,6 @@ public class ListComicActivity extends AppCompatActivity {
 
 
 
-
-
 //        get all data
         Cursor cursor = AddComicActivity.dbComic.getData("SELECT * FROM Comic");
         comics.clear();
@@ -64,7 +67,7 @@ public class ListComicActivity extends AppCompatActivity {
 
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, final long id) {
                 CharSequence[] items = {"Update", "Delete", "Add Chapter"};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ListComicActivity.this);
                 dialog.setTitle("Chooose an action");
@@ -89,7 +92,16 @@ public class ListComicActivity extends AppCompatActivity {
 
                         }else if(which == 1){
 //                            delete func
-                            Toast.makeText(getApplicationContext(), "Delete", Toast.LENGTH_SHORT).show();
+                            Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
+                            ArrayList<Integer> arrIdComic = new ArrayList<Integer>();
+                            while (c.moveToNext()){
+                                arrIdComic.add(c.getInt(0));
+                            }
+                            int idDelete = arrIdComic.get(position);
+                            String sql = "DELETE FROM Comic WHERE idComic = "+idDelete;
+                            AddComicActivity.dbComic.deleteData(sql);
+                            adapter.notifyDataSetChanged();
+                            Toast.makeText(getApplicationContext(), "Delete "+idDelete, Toast.LENGTH_SHORT).show();
                         }else {
 
                             Cursor c = AddComicActivity.dbComic.getData("SELECT idComic FROM Comic");
@@ -132,24 +144,24 @@ public class ListComicActivity extends AppCompatActivity {
 
     }
 
-//    private void showDialogUpdate(Activity activity){
-//        Dialog dialog = new Dialog(activity);
-//        dialog.setContentView(R.layout.dialog_update_comic);
-//
-//        dialog.setTitle("Update Comic");
-//        ImageView ivUpdateCover = dialog.findViewById(R.id.iv_update_cover);
-//        EditText etUpdateTitle = dialog.findViewById(R.id.et_update_title);
-//        EditText etUpdateDesc = dialog.findViewById(R.id.et_desc);
-////        Button btnUpdate = dialog.findViewById(R.id.btn_update);
-//
-//        int width = (int) (activity.getResources().getDisplayMetrics().widthPixels * 0.9);
-//        int height = (int) (activity.getResources().getDisplayMetrics().heightPixels * 0.7);
-//
-//        dialog.getWindow().setLayout(width, height);
-//        dialog.show();
-//
-////        ivUpdateCover.setOnClickListener(this);
-//
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent in = new Intent(ListComicActivity.this, AddComicActivity.class);
+        switch (item.getItemId()){
+            case R.id.action_add:
+                startActivity(in);
+                return true;
+            default:
+                startActivity(in);
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 }

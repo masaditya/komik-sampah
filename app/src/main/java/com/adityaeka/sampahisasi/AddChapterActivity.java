@@ -67,8 +67,6 @@ public class AddChapterActivity extends AppCompatActivity implements View.OnClic
                             comicId
                     );
                     Toast.makeText(getApplicationContext(), "Added New Chapter", Toast.LENGTH_SHORT).show();
-//                    etTitle.setText("");
-//                    etDesc.setText("");
                     ivChapter.setImageResource(R.mipmap.ic_launcher_round);
 
                 }catch (Exception e){

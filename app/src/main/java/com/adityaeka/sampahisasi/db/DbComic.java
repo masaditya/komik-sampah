@@ -55,6 +55,15 @@ public class DbComic extends SQLiteOpenHelper {
         database.close();
     }
 
+//    DELETE
+    public void deleteData(String sql){
+        SQLiteDatabase database = getWritableDatabase();
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.execute();
+        database.close();
+
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
     }
