@@ -6,9 +6,58 @@
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/banner1"
+            />
+
+   <LinearLayout
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:weightSum="2"
+       android:layout_height="wrap_content">
+
+       <Button
+           android:layout_margin="@dimen/horizontal"
+           android:layout_weight="1"
+           android:id="@+id/home_show_list"
+           android:text="Show List Comics"
+           android:textSize="25sp"
+           android:layout_width="200dp"
+           android:layout_height="200dp" />
+       <Button
+           android:layout_margin="@dimen/horizontal"
+           android:layout_weight="1"
+           android:id="@+id/home_add_comic"
+           android:text="Add New Comic"
+           android:textSize="25sp"
+           android:layout_width="200dp"
+           android:layout_height="200dp" />
+
+   </LinearLayout>
+
+
+        <Button
+            android:id="@+id/home_logout"
+            android:text="Logout"
+            android:layout_margin="@dimen/horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/home_register"
+            android:text="Logout"
+            android:layout_margin="@dimen/horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </FrameLayout>
