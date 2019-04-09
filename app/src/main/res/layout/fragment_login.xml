@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
+    android:background="@color/design_default_color_primary"
+    tools:context=".fragments.LoginFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,6 +15,8 @@
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
+
+
 
         <!-- Username Label -->
         <android.support.design.widget.TextInputLayout

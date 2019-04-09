@@ -1,12 +1,8 @@
-package com.adityaeka.sampahisasi;
+package com.adityaeka.sampahisasi.preferences;
 
-import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
-import com.adityaeka.sampahisasi.DummyTemp.Data;
-import com.adityaeka.sampahisasi.db.DbComic;
-import com.adityaeka.sampahisasi.models.Comic;
+import com.adityaeka.sampahisasi.MainActivity;
 import com.adityaeka.sampahisasi.models.User;
 
 import java.util.ArrayList;

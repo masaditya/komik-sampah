@@ -10,7 +10,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.adityaeka.sampahisasi.db.DbComic;
+import com.adityaeka.sampahisasi.fragments.HomeFragment;
+import com.adityaeka.sampahisasi.fragments.LoginFragment;
+import com.adityaeka.sampahisasi.fragments.RegisterFragment;
 import com.adityaeka.sampahisasi.models.User;
+import com.adityaeka.sampahisasi.preferences.Session;
+import com.adityaeka.sampahisasi.preferences.Settings;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, LoginFragment.OnLoginFragmentListener, HomeFragment.OnHomeFragmentListener, RegisterFragment.OnRegisterFragmentListener
 {

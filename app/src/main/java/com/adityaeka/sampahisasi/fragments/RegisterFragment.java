@@ -1,4 +1,4 @@
-package com.adityaeka.sampahisasi;
+package com.adityaeka.sampahisasi.fragments;
 
 
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adityaeka.sampahisasi.R;
 import com.adityaeka.sampahisasi.db.DbComic;
 
 

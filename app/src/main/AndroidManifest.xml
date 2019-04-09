@@ -15,7 +15,8 @@
         <activity android:name=".AddChapterActivity" />
         <activity android:name=".ListComicActivity" />
         <activity android:name=".AddComicActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

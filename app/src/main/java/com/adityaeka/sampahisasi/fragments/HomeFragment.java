@@ -1,4 +1,4 @@
-package com.adityaeka.sampahisasi;
+package com.adityaeka.sampahisasi.fragments;
 
 
 import android.content.Intent;
@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+
+import com.adityaeka.sampahisasi.AddComicActivity;
+import com.adityaeka.sampahisasi.ListComicActivity;
+import com.adityaeka.sampahisasi.R;
 
 
 /**

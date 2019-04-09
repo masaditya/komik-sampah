@@ -1,8 +1,10 @@
-package com.adityaeka.sampahisasi;
+package com.adityaeka.sampahisasi.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.preference.PreferenceManager;
+
+import com.adityaeka.sampahisasi.preferences.Constant;
 
 public class Settings {
 
