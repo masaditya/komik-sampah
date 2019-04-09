@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+
     tools:context=".fragments.RegisterFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -14,15 +16,32 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register Your New Account"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorcard"
+            />
+
+        <ImageView
+            android:src="@drawable/login"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            />
+
         <!-- Username Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorcard"
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/reg_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:hint="Username" />
         </android.support.design.widget.TextInputLayout>
 
@@ -31,16 +50,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorcard"
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/reg_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:gravity="center"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_register"
+            android:textColor="@color/design_default_color_primary"
+            android:background="@drawable/shape"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -49,6 +72,8 @@
             android:text="Register"/>
 
         <TextView android:id="@+id/link_login"
+            android:textColor="@color/colorcard"
+            android:layout_marginTop="150dp"
             android:clickable="true"
             android:onClick="onClick"
             android:layout_width="match_parent"
@@ -56,7 +81,7 @@
             android:layout_marginBottom="24dp"
             android:text="Already registered? Login here!"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 

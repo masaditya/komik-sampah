@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorlist"
     tools:context=".fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -17,6 +18,7 @@
             android:id="@+id/img_splash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="fitStart"
             android:src="@mipmap/banner4"
             android:contentDescription="TODO" />
 
@@ -27,13 +29,22 @@
        android:layout_height="wrap_content">
 
        <Button
+           android:layout_marginHorizontal="@dimen/vertical"
+           android:background="@drawable/shapes_input"
            android:layout_weight="1"
            android:id="@+id/home_show_list"
            android:text="Show List Comics"
            android:textSize="25sp"
            android:layout_width="200dp"
+           android:layout_marginBottom="@dimen/vertical"
+           android:textColor="@color/design_default_color_primary"
            android:layout_height="150dp" />
        <Button
+           android:textColor="@color/design_default_color_primary"
+           android:layout_marginBottom="@dimen/vertical"
+           android:shadowColor="@color/design_default_color_primary_dark"
+           android:layout_marginHorizontal="@dimen/horizontal"
+           android:background="@drawable/shapes_input"
            android:layout_weight="1"
            android:id="@+id/home_add_comic"
            android:text="Add New Comic"
@@ -46,14 +57,17 @@
 
 
         <Button
-            android:layout_marginBottom="@dimen/vertical"
-
+            android:layout_marginHorizontal="@dimen/vertical"
+            android:layout_marginVertical="@dimen/vertical"
+            android:background="@drawable/shape"
             android:id="@+id/home_register"
             android:text="Register new User"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Button
+            android:layout_marginHorizontal="@dimen/horizontal"
+            android:background="@drawable/shape"
             android:id="@+id/home_logout"
             android:text="Logout"
             android:layout_marginTop="@dimen/vertical"

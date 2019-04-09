@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_primary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.LoginFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -16,15 +16,29 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In to Your Account"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorcard"
+            />
 
-
+        <!--<ImageView-->
+            <!--android:src="@drawable/login"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="200dp"-->
+            <!--/>-->
         <!-- Username Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorcard"
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/text_username"
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username" />
@@ -35,15 +49,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorcard"
             android:layout_marginBottom="8dp">
             <EditText android:id="@+id/text_password"
                 android:layout_width="match_parent"
+                android:gravity="center"
+
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
+            android:textColor="@color/design_default_color_primary"
+            android:background="@drawable/shape"
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,6 +72,8 @@
             android:text="Login"/>
 
         <TextView android:id="@+id/link_signup"
+            android:textColor="@color/colorcard"
+            android:layout_marginTop="150dp"
             android:clickable="true"
             android:onClick="onClick"
             android:layout_width="match_parent"
@@ -60,7 +81,7 @@
             android:layout_marginBottom="24dp"
             android:text="No account yet? Create one"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 </FrameLayout>
