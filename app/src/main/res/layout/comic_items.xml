@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="450dp"
     app:cardBackgroundColor="@color/colorcard"
-    app:cardCornerRadius="1dp"
+    app:cardCornerRadius="10dp"
     android:outlineAmbientShadowColor="#7f8c8d"
-    android:scaleType="fitXY"
     android:layout_marginVertical="50dp"
     >
 

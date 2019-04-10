@@ -11,11 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReadComicActivity"></activity>
+        <activity
+            android:name=".Temp"
+            android:label="@string/title_activity_temp"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ReadComicActivity" />
         <activity android:name=".AddChapterActivity" />
         <activity android:name=".ListComicActivity" />
         <activity android:name=".AddComicActivity" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

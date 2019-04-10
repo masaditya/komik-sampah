@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.LoginFragment">
 
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="20dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -25,12 +26,12 @@
             android:textColor="@color/colorcard"
             />
 
-        <!--<ImageView-->
-            <!--android:src="@drawable/login"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="200dp"-->
-            <!--/>-->
-        <!-- Username Label -->
+        <ImageView
+            android:src="@drawable/img_login"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            />
+         Username Label
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,8 +73,9 @@
             android:text="Login"/>
 
         <TextView android:id="@+id/link_signup"
+            android:fontFamily="@font/caviar"
             android:textColor="@color/colorcard"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="50dp"
             android:clickable="true"
             android:onClick="onClick"
             android:layout_width="match_parent"

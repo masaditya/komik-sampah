@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:background="@drawable/bg_add"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +11,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:layout_marginVertical="@dimen/vertical"
         android:id="@+id/iv_chapteritem"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -21,6 +23,9 @@
         />
 
     <Button
+        android:layout_marginVertical="@dimen/vertical"
+        android:background="@drawable/shape"
+        android:paddingHorizontal="@dimen/horizontal"
         android:id="@+id/btn_choose_chapter"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
@@ -33,6 +38,8 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:paddingHorizontal="@dimen/horizontal"
+        android:background="@drawable/shape"
         android:layout_marginTop="@dimen/vertical"
         android:id="@+id/btn_add_chapter"
         android:layout_width="211dp"
